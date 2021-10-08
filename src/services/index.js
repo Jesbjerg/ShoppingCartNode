@@ -1,1 +1,1 @@
-module.exports.userService = require('./user');
+module.exports.productService = require('./product');
