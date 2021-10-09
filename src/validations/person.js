@@ -4,10 +4,11 @@ const { objectId } = require('./custom');
 const createProduct = {
   body: Joi.object().keys({
     name: Joi.string().required(),
-    Price: Joi.number.required(),
+    Price: Joi.number().required(),
     Description: Joi.string().required(),
     Category: Joi.string().required().valid('Dairy', 'General', 'Spice', 'Vegetable', 'Meat', 'Fruit', 'Carbs'),
-    Quantity: Joi.number().required().min(1)
+    Quantity: Joi.number().required().min(1),
+    img: Joi.string().required()
   })
 };
 
@@ -29,10 +30,11 @@ const updateProductById = {
   }),
   body: Joi.object().keys({
     name: Joi.string().required(),
-    Price: Joi.number.required(),
+    Price: Joi.number().required(),
     Description: Joi.string().required(),
     Category: Joi.string().required().valid('Dairy', 'General', 'Spice', 'Vegetable', 'Meat', 'Fruit', 'Carbs'),
-    Quantity: Joi.number().required().min(1)
+    Quantity: Joi.number().required().min(1),
+    img: Joi.string().required()
   })
 };
 

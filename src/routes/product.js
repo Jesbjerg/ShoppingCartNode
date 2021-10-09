@@ -11,7 +11,7 @@ router
   .get(productController.getProducts);
 
 router
-  .route('/:userId')
+  .route('/:productId')
   .get(validate(productValidation.getProductById), productController.getProductById)
   .put(validate(productValidation.updateProductById), productController.updateProductById)
   .delete(validate(productValidation.deleteProductById), productController.deleteproductById);
@@ -19,3 +19,5 @@ router
 router
   .route('/category/:category')
   .get(validate(productValidation.getProductByCategory), productController.getProductByCategory);
+
+module.exports = router;

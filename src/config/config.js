@@ -8,7 +8,7 @@ const envVarsSchema = Joi.object()
   .keys({
     NODE_ENV: Joi.string().valid('production', 'development', 'test').required(),
     PORT: Joi.number().default(3000),
-    MONGODB_URL: Joi.string().required().description('Mongo DB url'),
+    MONGODB_URL: Joi.string().required().description('Mongo DB url')
   })
   .unknown();
 
@@ -26,7 +26,7 @@ module.exports = {
     options: {
       useCreateIndex: true,
       useNewUrlParser: true,
-      useUnifiedTopology: true,
-    },
-  },
+      useUnifiedTopology: true
+    }
+  }
 };
