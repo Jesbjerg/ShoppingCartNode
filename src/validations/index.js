@@ -1,1 +1,1 @@
-module.exports.productValidation = require('./user.validation');
+module.exports.productValidation = require('./person');

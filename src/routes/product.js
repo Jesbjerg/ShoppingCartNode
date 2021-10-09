@@ -1,19 +1,21 @@
 const express = require('express');
 const validate = require('../middlewares/validate');
-const productValidation = require('../validations/product');
+const productValidation = require('../validations/person');
 const productController = require('../controllers/product');
 
 const router = express.Router();
 
 router
   .route('/')
-  .post(validate(productValidation.), productController.createProduct)
-  .get(validate(productValidation.getUsers), productController.getProducts);
+  .post(validate(productValidation.createProduct), productController.createProduct)
+  .get(productController.getProducts);
 
 router
   .route('/:userId')
-  .get(validate(productValidation.getProduct), productController.getProductById)
-  .put(validate(productValidation.updateProduct), productController.updateProductById)
-  .delete(validate(productValidation.deleteProduct), productController.deleteproductById);
+  .get(validate(productValidation.getProductById), productController.getProductById)
+  .put(validate(productValidation.updateProductById), productController.updateProductById)
+  .delete(validate(productValidation.deleteProductById), productController.deleteproductById);
 
-router.route('/category/:categoryId').get(validate(productValidation.createUser), productController.getProductByCategory);
+router
+  .route('/category/:category')
+  .get(validate(productValidation.getProductByCategory), productController.getProductByCategory);

@@ -1,5 +1,5 @@
 const httpStatus = require('http-status');
-const { Product } = require('../middlewares/models');
+const { Product } = require('../models');
 const ApiError = require('../utils/ApiError');
 
 const products = async () => {

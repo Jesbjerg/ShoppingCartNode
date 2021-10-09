@@ -1,54 +1,51 @@
 const Joi = require('joi');
 const { objectId } = require('./custom');
 
-const createUser = {
+const createProduct = {
   body: Joi.object().keys({
-    email: Joi.string().required().email(),
-    password: Joi.string().required().custom(password),
     name: Joi.string().required(),
-    role: Joi.string().required().valid('user', 'admin')
+    Price: Joi.number.required(),
+    Description: Joi.string().required(),
+    Category: Joi.string().required().valid('Dairy', 'General', 'Spice', 'Vegetable', 'Meat', 'Fruit', 'Carbs'),
+    Quantity: Joi.number().required().min(1)
   })
 };
 
-const getUsers = {
-  query: Joi.object().keys({
-    name: Joi.string(),
-    role: Joi.string(),
-    sortBy: Joi.string(),
-    limit: Joi.number().integer(),
-    page: Joi.number().integer()
-  })
-};
-
-const getUser = {
+const getProductById = {
   params: Joi.object().keys({
-    userId: Joi.string().custom(objectId)
+    productId: Joi.string().custom(objectId)
   })
 };
 
-const updateUser = {
+const getProductByCategory = {
   params: Joi.object().keys({
-    userId: Joi.required().custom(objectId)
+    category: Joi.string().required().valid('Dairy', 'General', 'Spice', 'Vegetable', 'Meat', 'Fruit', 'Carbs')
+  })
+};
+
+const updateProductById = {
+  params: Joi.object().keys({
+    productId: Joi.required().custom(objectId)
   }),
-  body: Joi.object()
-    .keys({
-      email: Joi.string().email(),
-      password: Joi.string().custom(password),
-      name: Joi.string()
-    })
-    .min(1)
+  body: Joi.object().keys({
+    name: Joi.string().required(),
+    Price: Joi.number.required(),
+    Description: Joi.string().required(),
+    Category: Joi.string().required().valid('Dairy', 'General', 'Spice', 'Vegetable', 'Meat', 'Fruit', 'Carbs'),
+    Quantity: Joi.number().required().min(1)
+  })
 };
 
-const deleteUser = {
+const deleteProductById = {
   params: Joi.object().keys({
-    userId: Joi.string().custom(objectId)
+    productId: Joi.string().custom(objectId)
   })
 };
 
 module.exports = {
-  createUser,
-  getUsers,
-  getUser,
-  updateUser,
-  deleteUser
+  createProduct,
+  getProductById,
+  getProductByCategory,
+  updateProductById,
+  deleteProductById
 };
